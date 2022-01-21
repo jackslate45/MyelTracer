@@ -35,12 +35,18 @@ class ToolMode(Enum):
     DESELECT = '4' # deselect previous selections
     INFO = '5' # get info about currently selected axons
     SEL_MISC = '6'
+    SEL_MISC2 = '7'
+    SEL_MISC3 = '8'
+    SEL_MISC4 = '9'
     CUT = 'Q' # draw white lines
     DRAW = 'W' # draw black lines
     ERASE = 'E' # remove lines and counters
     COUNT = '' # the overarching count mode
     COUNT_UNMYEL = 'R' # counts unmyelinated axons
     COUNT_MYEL = 'T' # counts myelinated axons
+    COUNT_ADD = 'Y' # counts myelinated axons
+    COUNT_ADD2 = 'U' # counts myelinated axons
+    COUNT_ADD3 = 'I' # counts myelinated axons
 
 class Colors(Enum):
     """These are colors for use within the software"""
