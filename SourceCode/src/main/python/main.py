@@ -45,9 +45,9 @@ class ToolMode(Enum):
     COUNT = '' # the overarching count mode
     COUNT_UNMYEL = 'R' # counts unmyelinated axons
     COUNT_MYEL = 'T' # counts myelinated axons
-    COUNT_ADDIONAL = 'A' # counts distinct item 1
-    COUNT_ADDIONAL2 = 'S' # counts distinct item 2
-    COUNT_ADDIONAL3 = 'D' # counts distinct item 3
+    COUNT_ADDITIONAL = 'A' # counts distinct item 1
+    COUNT_ADDITIONAL2 = 'S' # counts distinct item 2
+    COUNT_ADDITIONAL3 = 'D' # counts distinct item 3
 
 class Colors(Enum):
     """These are colors for use within the software"""
@@ -60,6 +60,8 @@ class Colors(Enum):
     PINK = (228, 20, 255)
     PURPLE = (255, 20, 232)
     LIME = (5, 247, 150)
+    ORANGE = (0, 128, 255)
+    HOTPINK = (128, 0, 255)
     RED_HIGHLIGHT = (135, 135, 255)
     GREEN_HIGHLIGHT = (138, 255, 175)
     CYAN_HIGHLIGHT = (241, 245, 132)
@@ -177,21 +179,21 @@ class MainWindow(QMainWindow):
             lambda: self.image_view.handle_key(ToolMode.SEL_MISC.value), 
             self.tool_menu)
           # -Misc. Select Tool2
-        self.misc_tool = self.add_menu_item(
+        self.misc_tool2 = self.add_menu_item(
             'Misc. Select Tool v2', ToolMode.SEL_MISC2.value, 
             'Select any kind of feature v2',
             lambda: self.image_view.handle_key(ToolMode.SEL_MISC2.value), 
             self.tool_menu)
 
               # -Misc. Select Tool3
-        self.misc_tool = self.add_menu_item(
+        self.misc_tool3 = self.add_menu_item(
             'Misc. Select Tool v3', ToolMode.SEL_MISC3.value, 
             'Select any kind of feature v3',
             lambda: self.image_view.handle_key(ToolMode.SEL_MISC3.value), 
             self.tool_menu)
 
               # -Misc. Select Tool4
-        self.misc_tool = self.add_menu_item(
+        self.misc_tool4 = self.add_menu_item(
             'Misc. Select Tool v4', ToolMode.SEL_MISC4.value, 
             'Select any kind of feature v4',
             lambda: self.image_view.handle_key(ToolMode.SEL_MISC4.value), 
@@ -228,6 +230,24 @@ class MainWindow(QMainWindow):
             'Myelinated Axon Counting Tool', ToolMode.COUNT_MYEL.value,
             'Count myelinated axons',
             lambda: self.image_view.handle_key(ToolMode.COUNT_MYEL.value),
+            self.tool_menu)
+        #      # -Myelinated Counting Tool
+        self.additional_counting_tool = self.add_menu_item(
+            'Additional Tool - X', ToolMode.COUNT_ADDITIONAL.value,
+            'Count additonal items',
+            lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL.value),
+            self.tool_menu)
+        #      # -Myelinated Counting Tool
+        self.additional_counting_tool2 = self.add_menu_item(
+            'Additional Tool - Y', ToolMode.COUNT_ADDITIONAL2.value,
+            'Count additonal items v2',
+            lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL2.value),
+            self.tool_menu)
+             # -Myelinated Counting Tool
+        self.additional_counting_tool3 = self.add_menu_item(
+            'Additional Tool - Z', ToolMode.COUNT_ADDITIONAL3.value,
+            'Count additonal items v3',
+            lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL3.value),
             self.tool_menu)
         # --------
         self.tool_menu.addSeparator()
@@ -1145,7 +1165,10 @@ class DisplayImageWidget(QWidget):
                         straight line.',
                        'Erase unwanted lines or points',
                        'Click to add an unmyelinated counter',
-                       'Click to add a myelinated counter']
+                       'Click to add a myelinated counter',
+                       'Click to add an Additional counter v1',
+                       'Click to add an Additional counter v2',
+                       'Click to add an Additional counter v3']
         tool_tips = ['Axon Select Tool - <b>1</b><br>Click and drag for manual \
                       selection',
                      'Inner Myelin Select Tool - <b>2</b><br>Click and drag \
@@ -1164,7 +1187,10 @@ class DisplayImageWidget(QWidget):
                       click for straight lines',
                      'Erase Tool - <b>E</b>',
                      'Unmyelinated Axon Counting Tool - <b>R</b>',
-                     'Myelinated Axon Counting Tool - <b>T</b>']
+                     'Myelinated Axon Counting Tool - <b>T</b>',
+                     'Additional Counting Tool X- <b>A</b>',
+                     'Additional Counting Tool Y- <b>S</b>',
+                     'Additional Counting Tool Z- <b>D</b>']
         tool_names = [appctxt.get_resource('Icons/AxonTool.png'),
                       appctxt.get_resource('Icons/InnerTool.png'),
                       appctxt.get_resource('Icons/OuterTool.png'),
@@ -1179,7 +1205,11 @@ class DisplayImageWidget(QWidget):
                       appctxt.get_resource('Icons/EraseTool.png'),
                       appctxt.get_resource(
                         'Icons/UnmyelinatedCountingTool.png'),
-                      appctxt.get_resource('Icons/MyelinatedCountingTool.png')]
+                       appctxt.get_resource('Icons/MyelinatedCountingTool.png')                        ,
+                      appctxt.get_resource('Icons/AdditionalCountingTool.png'),
+                      appctxt.get_resource('Icons/AdditionalCountingTool2.png'),
+                      appctxt.get_resource('Icons/AdditionalCountingTool3.png')
+                      ]
         tool_modes = [ToolMode.SEL_AXON,
                       ToolMode.SEL_MYELIN_IN,
                       ToolMode.SEL_MYELIN_OUT,
@@ -1193,9 +1223,13 @@ class DisplayImageWidget(QWidget):
                       ToolMode.DRAW,
                       ToolMode.ERASE,
                       ToolMode.COUNT_UNMYEL,
-                      ToolMode.COUNT_MYEL]
+                      ToolMode.COUNT_MYEL,
+                      ToolMode.COUNT_ADDITIONAL,
+                      ToolMode.COUNT_ADDITIONAL2,
+                      ToolMode.COUNT_ADDITIONAL3
+                      ]
         self.tool_buttons = HButtonGroup(self, tool_names, tool_modes,
-                                        status_tips, tool_tips, True, 6)
+                                        status_tips, tool_tips, True, 9)
         self.tool_buttons.buttonPressed.connect(
             lambda x: self.set_mode(self.tool_buttons.get_val(x)))
         self.tool_buttons.layout.setAlignment(Qt.AlignTop)
@@ -1637,6 +1671,15 @@ class DisplayImageWidget(QWidget):
             elif value == ToolMode.COUNT_MYEL:
                 self.editor.set_mode(ToolMode.COUNT)
                 self.editor.set_cur_group('Myelinated Axons')
+            elif value == ToolMode.COUNT_ADDITIONAL:
+                self.editor.set_mode(ToolMode.COUNT)
+                self.editor.set_cur_group('X')
+            elif value == ToolMode.COUNT_ADDITIONAL2:
+                self.editor.set_mode(ToolMode.COUNT)
+                self.editor.set_cur_group('Y')
+            elif value == ToolMode.COUNT_ADDITIONAL3:
+                self.editor.set_mode(ToolMode.COUNT)
+                self.editor.set_cur_group('Z')
             else: self.editor.set_mode(value)
         if value == ToolMode.CUT:
             self.show_line_thickness_sliders()
@@ -2239,6 +2282,7 @@ class Axon_Editor:
             self.last_img = None
             self.show()
 
+    #EPS - Research here
     def mouse_event(self, event, x, y, flags, param, modifiers = None):
         """
         OpenCV mouse event handler
@@ -2565,6 +2609,12 @@ class Axon_Editor:
                         color = Colors.PURPLE.value
                     elif self.cur_group == 'Myelinated Axons':
                         color = Colors.LIME.value
+                    elif self.cur_group == 'X':
+                        color = Colors.YELLOW.value
+                    elif self.cur_group == 'Y':
+                        color = Colors.ORANGE.value
+                    elif self.cur_group == 'Z':
+                        color = Colors.HOTPINK.value
                     else:
                         color = Colors.PINK.value
                     display_image = cv.circle(display_image, self.cur_point, 3, 
@@ -2621,7 +2671,7 @@ class Axon_Editor:
                             Colors.ORANGE_HIGHLIGHT.value, cv.FILLED)
             cv.drawContours(overlay_image, self.saved_contours[
                                         self.mode_to_string(ToolMode.SEL_MISC)],
-                            -1, Colors.CYAN_HIGHLIGHT.value, cv.FILLED)
+                            -1, Colors.PURPLE.value, cv.FILLED)
             cv.drawContours(overlay_image, self.saved_contours[
                                         self.mode_to_string(ToolMode.SEL_MISC2)],
                             -1, Colors.GREEN.value, cv.FILLED)
@@ -2640,6 +2690,7 @@ class Axon_Editor:
         display_image = cv.addWeighted(overlay_image, self.alpha, base_image, 
                                        1-self.alpha, 0)
 
+        #EPS - Future Update?
         # Add counter and number overlay
         if self.display_options['counters']:
             # Draw group indicators:
@@ -2648,6 +2699,12 @@ class Axon_Editor:
                     color = Colors.PURPLE.value
                 elif group == 'Myelinated Axons':
                     color = Colors.LIME.value
+                elif group == 'X':
+                    color = Colors.YELLOW.value
+                elif group == 'Y':
+                    color = Colors.ORANGE.value
+                elif group == 'Z':
+                    color = Colors.HOTPINK.value
                 else:
                     color = Colors.PINK.value
                 display_image = cv.circle(display_image, point, 3, color, -1)
@@ -2764,7 +2821,7 @@ class Axon_Editor:
             if export_selections['Outer Myelin Diameter']:
                 to_write += 'Outer Diameter,'
             if export_selections['g-ratio']:
-                to_write += 'g-ratio(Inner/Outer),g-ration(Axon/Outer),'
+                to_write += 'g-ratio(Inner/Outer),g-ratio(Axon/Outer),'
             to_write += '\n'
             f.write(to_write)
 
@@ -3064,11 +3121,24 @@ class Axon_Editor:
                             cur_index += 1
                             to_write = str(cur_index) + ',' + sub_to_write +  mode_string +'\n'
                             f.write(to_write)
-
+                        #Deteremine which Color based on Type
                         if len(sub_to_write) != sub_to_write.count(','):
-                            cv.drawContours(overlay, [misc], -1, 
-                                            Colors.CYAN_HIGHLIGHT.value,
-                                            cv.FILLED)
+                            if mode_string == self.mode_to_string(ToolMode.SEL_MISC):
+                                cv.drawContours(overlay, [misc], -1, 
+                                                Colors.PURPLE.value,
+                                                cv.FILLED)
+                            if mode_string == self.mode_to_string(ToolMode.SEL_MISC2):
+                                cv.drawContours(overlay, [misc], -1, 
+                                                Colors.GREEN.value,
+                                                cv.FILLED)
+                            if mode_string == self.mode_to_string(ToolMode.SEL_MISC3):
+                                cv.drawContours(overlay, [misc], -1, 
+                                                Colors.BLUE.value,
+                                                cv.FILLED)
+                            if mode_string == self.mode_to_string(ToolMode.SEL_MISC4):
+                                cv.drawContours(overlay, [misc], -1, 
+                                                Colors.RED.value,
+                                                cv.FILLED)
                             cv.drawContours(overlay, [misc], -1,
                                             Colors.BLACK.value, 1)
 
@@ -3094,6 +3164,12 @@ class Axon_Editor:
                     color = Colors.PURPLE.value
                 elif group == 'Myelinated Axons':
                     color = Colors.LIME.value
+                elif group == 'X':
+                        color = Colors.YELLOW.value
+                elif group == 'Y':
+                        color = Colors.ORANGE.value
+                elif group == 'Z':
+                        color = Colors.HOTPINK.value
                 else:
                     color = Colors.PINK.value
                 export_image = cv.circle(export_image, point, 3, color, -1)
