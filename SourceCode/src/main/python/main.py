@@ -12,20 +12,10 @@ from math import sqrt, pi
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
 
 # Current version of the software
-__version__ = '1.4'
+__version__ = '2.0'
 COMPATIBLE_VERSIONS = [
-    '0.1',
-    '0.2',
-    '0.3',
-    '0.4',
-    '0.5',
-    '0.6',
-    '0.7',
-    '1.0',
-    '1.1',
-    '1.2',
-    '1.3',
-    '1.4'
+
+    '2.0'
 ]
 
 class ToolMode(Enum):
