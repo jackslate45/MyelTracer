@@ -67,5 +67,7 @@ Software is packaged with [fman build system](https://build-system.fman.io/).
 1. In the `SourceCode` directory, type `fbs freeze`
 2. Type `fbs installer`
 
+Before you can use the installer command on Windows, please install [NSIS](https://nsis.sourceforge.io/Main_Page/) and add its installation directory to your PATH environment variable. You can also right-click on the Installer file in `SourceCode\target\installer` and select `Compile NSIS Script`
+
 This will generate a standalone installer for the operating system that you are currently using. 
 * For example, if you are using MacOS High Sierra 10.13, then this will generate an installer that should work on MacOS 10.13 and up. To create a Windows installer, you would have to repeat this process on a Windows machine.

@@ -139,9 +139,3 @@ cython_debug/
 
 .DS_Store
 backups/
-SourceCode/119766-area_calculations.csv
-SourceCode/119766-data.txt
-SourceCode/119766-overlay.tif
-SourceCode/119760-area_calculations.csv
-SourceCode/119760-data.txt
-SourceCode/119760-overlay.tif
