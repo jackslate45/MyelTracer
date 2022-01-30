@@ -1188,9 +1188,9 @@ class DisplayImageWidget(QWidget):
                      'Erase Tool - <b>E</b>',
                      'Unmyelinated Axon Counting Tool - <b>R</b>',
                      'Myelinated Axon Counting Tool - <b>T</b>',
-                     'Additional Counting Tool X- <b>A</b>',
-                     'Additional Counting Tool Y- <b>S</b>',
-                     'Additional Counting Tool Z- <b>D</b>']
+                     'Additional Counting Tool X - <b>A</b>',
+                     'Additional Counting Tool Y - <b>S</b>',
+                     'Additional Counting Tool Z - <b>D</b>']
         tool_names = [appctxt.get_resource('Icons/AxonTool.png'),
                       appctxt.get_resource('Icons/InnerTool.png'),
                       appctxt.get_resource('Icons/OuterTool.png'),
@@ -1354,7 +1354,6 @@ class DisplayImageWidget(QWidget):
         # Credits Section
         credits_text = f'<p>MyelTracer v{__version__}</p>'
         credits_text += "<p>Created by <a href='https://fenglaboratory.org/'>Feng Lab</a>, code written by <a href='mailto:harrisonallen555@gmail.com'>Harrison Allen</a></p>"
-        credits_text += "<p>Updates by <a href='mailto:eric.shelestak@gmail.com'>Eric Shelestak</a>.</p>"
         credits_text += "<p>Check out the <a href='https://github.com/HarrisonAllen/MyelTracer'>source code on GitHub</a></p>"
         credits_text += "<p>Enjoying MyelTracer? Cite our <a href='https://doi.org/10.1523/ENEURO.0558-20.2021'>eNeuro publication</a></p>"
         self.credits = QLabel(credits_text)
