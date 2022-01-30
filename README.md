@@ -71,3 +71,19 @@ Before you can use the installer command on Windows, please install [NSIS](https
 
 This will generate a standalone installer for the operating system that you are currently using. 
 * For example, if you are using MacOS High Sierra 10.13, then this will generate an installer that should work on MacOS 10.13 and up. To create a Windows installer, you would have to repeat this process on a Windows machine.
+
+
+### Compatability Issues Any -> 1.4
+In 1.4, 3 additional miscellaneous select tools were added to the tracker.  This allows the tracker to have be able to track 5 different points across the map.  Axon / Misc 1 / Misc 2 / Misc 3 / Misc 4.
+ 
+However, this causes an issue when loading old data sets.  While this bug is being worked out, at this time the quick fix is to add the misc2 / misc3 / misc4 trackers to any previously created data files:
+ 
+photo here
+ 
+This will allow the program to load the older files, and have access to the new updates.
+ 
+Additionally, by compiling the code without the compatible versions, it will allow the program to determine itself that it is not able to load the file.  
+ 
+photo here
+ 
+The balance here is any previously completed files will not have access to the additional select and count trackers. The original client was made aware of this issue, and is discussing internally how to proceed.  Once determined, this section will be updated accordingly.
