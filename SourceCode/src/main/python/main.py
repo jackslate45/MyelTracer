@@ -231,21 +231,21 @@ class MainWindow(QMainWindow):
             'Count myelinated axons',
             lambda: self.image_view.handle_key(ToolMode.COUNT_MYEL.value),
             self.tool_menu)
-        #      # -Myelinated Counting Tool
+        # -Additional Counting Tool - X
         self.additional_counting_tool = self.add_menu_item(
-            'Additional Tool - X', ToolMode.COUNT_ADDITIONAL.value,
+            'Additional Counting Tool - X', ToolMode.COUNT_ADDITIONAL.value,
             'Count additonal items',
             lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL.value),
             self.tool_menu)
-        #      # -Myelinated Counting Tool
+        #  -Additional Counting Tool - Y
         self.additional_counting_tool2 = self.add_menu_item(
-            'Additional Tool - Y', ToolMode.COUNT_ADDITIONAL2.value,
+            'Additional Counting Tool - Y', ToolMode.COUNT_ADDITIONAL2.value,
             'Count additonal items v2',
             lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL2.value),
             self.tool_menu)
-             # -Myelinated Counting Tool
+        # -Additional Counting Tool - Z
         self.additional_counting_tool3 = self.add_menu_item(
-            'Additional Tool - Z', ToolMode.COUNT_ADDITIONAL3.value,
+            'Additional Counting Tool - Z', ToolMode.COUNT_ADDITIONAL3.value,
             'Count additonal items v3',
             lambda: self.image_view.handle_key(ToolMode.COUNT_ADDITIONAL3.value),
             self.tool_menu)
@@ -1476,7 +1476,7 @@ class DisplayImageWidget(QWidget):
                 'draw_size': self.draw_size
             }
             self.editor.save(filename, base_info)
-
+    
     def open(self, filename):
         """
         Opens a session from 'filename' (str)
@@ -2689,8 +2689,6 @@ class Axon_Editor:
         # Merge the overlay image to the base with alpha
         display_image = cv.addWeighted(overlay_image, self.alpha, base_image, 
                                        1-self.alpha, 0)
-
-        #EPS - Future Update?
         # Add counter and number overlay
         if self.display_options['counters']:
             # Draw group indicators:
@@ -3241,7 +3239,7 @@ class Axon_Editor:
         with open(filename, 'w') as f:
             f.write(str(export_data))
 
-    def open(self, import_data):
+    def open(self, import_data):        
         if 'contours' in import_data:
             self.saved_contours = import_data['contours']
             if 'Axon' in self.saved_contours:
@@ -3286,7 +3284,7 @@ class Axon_Editor:
             self.counters = import_data['counters']
         else:
             self.counters = []
-
+            
         self.check_undo_status()
         self.force_redraw = True
         self.redraw_contours = True
