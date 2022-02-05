@@ -1343,7 +1343,8 @@ class DisplayImageWidget(QWidget):
 
         # Credits Section
         credits_text = f'<p>MyelTracer v{__version__}</p>'
-        credits_text += "<p>Created by <a href='https://fenglaboratory.org/'>Feng Lab</a>, code written by <a href='mailto:harrisonallen555@gmail.com'>Harrison Allen</a></p>"
+        credits_text += "<p>Original Program Created by <a href='https://fenglaboratory.org/'>Feng Lab</a>, code written by <a href='mailto:harrisonallen555@gmail.com'>Harrison Allen</a></p>"
+        credits_text += "<p>MyelTracer 2.0 updates by by <a href='mailto:eric.shelestak@gmail.com'>Eric Shelestak</a></p>"
         credits_text += "<p>Check out the <a href='https://github.com/HarrisonAllen/MyelTracer'>source code on GitHub</a></p>"
         credits_text += "<p>Enjoying MyelTracer? Cite our <a href='https://doi.org/10.1523/ENEURO.0558-20.2021'>eNeuro publication</a></p>"
         self.credits = QLabel(credits_text)
