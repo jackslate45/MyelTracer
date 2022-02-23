@@ -67,5 +67,22 @@ Software is packaged with [fman build system](https://build-system.fman.io/).
 1. In the `SourceCode` directory, type `fbs freeze`
 2. Type `fbs installer`
 
+Before you can use the installer command on Windows, please install [NSIS](https://nsis.sourceforge.io/Main_Page/) and add its installation directory to your PATH environment variable. You can also right-click on the Installer file in `SourceCode\target\installer` and select `Compile NSIS Script`
+
 This will generate a standalone installer for the operating system that you are currently using. 
 * For example, if you are using MacOS High Sierra 10.13, then this will generate an installer that should work on MacOS 10.13 and up. To create a Windows installer, you would have to repeat this process on a Windows machine.
+
+
+### Compatability Issues Any -> 2.0
+In 2.0, 3 additional miscellaneous select tools were added to the tracker.  This allows the tracker to have be able to track 5 different points across the map.  Axon / Misc 1 / Misc 2 / Misc 3 / Misc 4.
+ 
+However, this causes an issue when loading old data sets. Since Misc2 / Misc3 / Misc4 do not exist in the current application, it will be unable to load previous data sets.  
+
+photo here
+ 
+To fix this, you must update the revision and add the Misc2 / Misc3 / Misc4 fields to the data file, as described below:
+
+photos here.
+
+This will allow the MyelTracer the ability to load the older files, and have access to the new updates.
+ 
